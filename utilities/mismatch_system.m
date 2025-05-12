@@ -1,5 +1,5 @@
 function simins = mismatch_system(model, mismatch_width, mismatch_std, varargin)
-    %MISMATCH_SYSTEM Add mismatch to neuromorphic block of system
+    %MISMATCH_SYSTEM Add mismatch to all neuromorphic blocks of a simulink model
     %   Detailed explanation goes here
     
     % block_type_list, block_whitelist, block_blacklist, mismatch_list, params, sims_or_nb_sims

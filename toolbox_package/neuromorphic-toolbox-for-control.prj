@@ -4,10 +4,10 @@
     <param.authnamewatermark>Christian Fernandez Lorden</param.authnamewatermark>
     <param.email>Christian.FernandezLorden@uliege.be</param.email>
     <param.company>Université de Liège</param.company>
-    <param.summary />
+    <param.summary>A Simulink toolbox aimed at providing blocks and analysis tools to construct neuromorphic control loops.</param.summary>
     <param.description />
     <param.screenshot />
-    <param.version>0.2.1</param.version>
+    <param.version>0.2.2</param.version>
     <param.output>${PROJECT_ROOT}\neuromorphic-toolbox-for-control.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -60,8 +60,8 @@ toolbox_package/*
     <param.required.addons />
     <param.matlab.project.id />
     <param.matlab.project.name />
-    <param.release.start />
-    <param.release.end />
+    <param.release.start>R2022a</param.release.start>
+    <param.release.end>latest</param.release.end>
     <param.release.current.only>false</param.release.current.only>
     <param.compatiblity.windows>true</param.compatiblity.windows>
     <param.compatiblity.macos>true</param.compatiblity.macos>
@@ -77,7 +77,6 @@ toolbox_package/*
       <param.authnamewatermark />
       <param.email />
       <param.company />
-      <param.summary />
       <param.description />
       <param.screenshot />
       <param.output />
@@ -98,8 +97,6 @@ toolbox_package/*
       <param.required.addons />
       <param.matlab.project.id />
       <param.matlab.project.name />
-      <param.release.start />
-      <param.release.end />
       <param.release.current.only />
       <param.compatiblity.windows />
       <param.compatiblity.macos />

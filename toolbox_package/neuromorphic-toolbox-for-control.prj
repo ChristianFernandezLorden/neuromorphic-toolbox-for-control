@@ -7,7 +7,7 @@
     <param.summary>A Simulink toolbox aimed at providing blocks and analysis tools to construct neuromorphic control loops.</param.summary>
     <param.description />
     <param.screenshot />
-    <param.version>0.2.2</param.version>
+    <param.version>0.2.3</param.version>
     <param.output>${PROJECT_ROOT}\neuromorphic-toolbox-for-control.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -117,6 +117,7 @@ toolbox_package/*
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\LICENSE</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\neuromorphic_blocks.slx</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\README.md</file>
+      <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\sl_customization.m</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\slblocks.m</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\utilities</file>
     </fileset.rootfiles>

@@ -9,62 +9,66 @@ function simins = mismatch_system(model, mismatch_width, mismatch_std, varargin)
 
     [simins, block_includelist, block_excludelist, blocktype_includelist, mismatch_list, mismatch_func_map, params] = parse_input(model, varargin, mismatch_width, mismatch_std);
 
-    model_work = get_param(model,'ModelWorkspace');
-    old_model_work.DataSource = model_work.DataSource;
-    try
-        old_model_work.FileName = model_work.FileName;
-    catch
-    end
-    try
-        old_model_work.EnableValueSource = model_work.EnableValueSource;
-    catch
-    end
-    try
-        old_model_work.ValueSourceFile = model_work.ValueSourceFile;
-    catch
-    end
-    try
-        old_model_work.MATLABCode = model_work.MATLABCode;
-    catch
-    end
-    model_work.DataSource = 'MAT-File';
-    tempfile = [tempname, '.mat'];
-    model_work.FileName = tempfile;
-    saveToSource(model_work)
-
     param_fields = fieldnames(params);
-    for i = 1:length(param_fields)
-        name = param_fields{i};
-        for j = 1:length(simins)
-            simins(j) = simins(j).setVariable(name, params.(name), "Workspace", model);
+    if ~isempty(param_fields)
+        model_work = get_param(model,'ModelWorkspace');
+        old_model_work.DataSource = model_work.DataSource;
+        try
+            old_model_work.FileName = model_work.FileName;
+        catch
         end
-        model_work.assignin(name,params.(name));
+        try
+            old_model_work.EnableValueSource = model_work.EnableValueSource;
+        catch
+        end
+        try
+            old_model_work.ValueSourceFile = model_work.ValueSourceFile;
+        catch
+        end
+        try
+            old_model_work.MATLABCode = model_work.MATLABCode;
+        catch
+        end
+        model_work.DataSource = 'MAT-File';
+        tempfile = [tempname, '.mat'];
+        model_work.FileName = tempfile;
+        saveToSource(model_work)
+    
+        for i = 1:length(param_fields)
+            name = param_fields{i};
+            for j = 1:length(simins)
+                simins(j) = simins(j).setVariable(name, params.(name), "Workspace", model);
+            end
+            model_work.assignin(name,params.(name));
+        end
     end
 
     all_blocks = find_system(model, 'LookUnderMasks', 'off', 'FollowLinks', 'on');
 
     simins = apply_mismatch_to_simins(simins, all_blocks, model_work, block_includelist, block_excludelist, blocktype_includelist, mismatch_list, mismatch_func_map);
 
-    reload(model_work);
-    model_work.DataSource = old_model_work.DataSource;
-    try
-        model_work.FileName = old_model_work.FileName;
-    catch 
+    if ~isempty(param_fields)
+        reload(model_work);
+        model_work.DataSource = old_model_work.DataSource;
+        try
+            model_work.FileName = old_model_work.FileName;
+        catch 
+        end
+        try
+            model_work.EnableValueSource = old_model_work.EnableValueSource;
+        catch 
+        end
+        try
+            model_work.ValueSourceFile = old_model_work.ValueSourceFile;
+        catch
+        end
+        try
+            model_work.MATLABCode = old_model_work.MATLABCode;
+        catch
+        end
+        
+        delete(tempfile)
     end
-    try
-        model_work.EnableValueSource = old_model_work.EnableValueSource;
-    catch 
-    end
-    try
-        model_work.ValueSourceFile = old_model_work.ValueSourceFile;
-    catch
-    end
-    try
-        model_work.MATLABCode = old_model_work.MATLABCode;
-    catch
-    end
-    
-    delete(tempfile)
 end
 
 
@@ -489,13 +493,11 @@ function simins = mismatch_params_from_list(model_work,blPath,simins,list,rand_f
         try
             value = model_work.evalin(get_param(blPath, p{1}));
         catch E
-            error(['Param value "' p{1} '" cannot be evaluated']);
+            error(['Param value "' p{1} '" from block "' blPath '" cannot be evaluated.']);
         end
         for j = 1:length(simins)
             new_value = rand_func(value);
             simins(j) = simins(j).setBlockParameter(blPath, p{1}, num2str(new_value, '%.5e'));
-            disp('here')
-            disp(blPath)
         end
     end
 end

@@ -30,3 +30,9 @@ codegen/
 
 # Octave session info
 octave-workspace
+
+# docs building
+docs/build/*
+
+# vscode
+.vscode

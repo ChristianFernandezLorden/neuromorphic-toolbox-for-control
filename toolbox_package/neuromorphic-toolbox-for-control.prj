@@ -1,14 +1,14 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration file="C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package\neuromorphic-toolbox-for-control.prj" location="C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package" name="neuromorphic-toolbox-for-control" target="target.toolbox" target-name="Package Toolbox">
-    <param.appname>neuromorphic-toolbox-for-control</param.appname>
+  <configuration build-checksum="4054555664" file="C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package\neuromorphic-toolbox-for-control.prj" location="C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package" name="neuromorphic-toolbox-for-control" target="target.toolbox" target-name="Package Toolbox">
+    <param.appname>Neuromorphic Toolbox for Control</param.appname>
     <param.authnamewatermark>Christian Fernandez Lorden</param.authnamewatermark>
     <param.email>Christian.FernandezLorden@uliege.be</param.email>
     <param.company>Université de Liège</param.company>
     <param.summary>A Simulink toolbox aimed at providing blocks and analysis tools to construct neuromorphic control loops.</param.summary>
     <param.description />
-    <param.screenshot />
-    <param.version>0.2.5</param.version>
-    <param.output>${PROJECT_ROOT}\neuromorphic-toolbox-for-control.mltbx</param.output>
+    <param.screenshot>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\icons\toolbox_icon.png</param.screenshot>
+    <param.version>0.2.6</param.version>
+    <param.output>${PROJECT_ROOT}\Neuromorphic Toolbox for Control.mltbx</param.output>
     <param.products.name />
     <param.products.id />
     <param.products.version />
@@ -25,7 +25,7 @@ test_mismatch.slx
 .git
 slprj
 toolbox_package
-
+resources
 
 %
 % A single file in a subfolder of the toolbox folder:
@@ -54,7 +54,9 @@ toolbox_package/*
     <param.registered.apps />
     <param.docs />
     <param.getting.started.guide />
-    <param.matlabpath.excludes />
+    <param.matlabpath.excludes>
+      <item>/utilities</item>
+    </param.matlabpath.excludes>
     <param.javaclasspath.excludes />
     <param.exported.on.package>false</param.exported.on.package>
     <param.required.addons />
@@ -78,7 +80,6 @@ toolbox_package/*
       <param.email />
       <param.company />
       <param.description />
-      <param.screenshot />
       <param.output />
       <param.products.name />
       <param.products.id />
@@ -91,7 +92,6 @@ toolbox_package/*
       <param.registered.apps />
       <param.docs />
       <param.getting.started.guide />
-      <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
       <param.exported.on.package />
       <param.required.addons />
@@ -113,19 +113,17 @@ toolbox_package/*
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control</file>
     </fileset.rootdir>
     <fileset.rootfiles>
+      <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\blocks</file>
+      <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\code</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\icons</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\LICENSE</file>
-      <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\neuromorphic_blocks.slx</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\README.md</file>
-      <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\sl_customization.m</file>
-      <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\slblocks.m</file>
-      <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\utilities</file>
     </fileset.rootfiles>
     <fileset.depfun.included />
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}" name="neuromorphic-toolbox-for-control.mltbx" optional="false">C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package\neuromorphic-toolbox-for-control.mltbx</file>
+      <file location="${PROJECT_ROOT}" name="Neuromorphic Toolbox for Control.mltbx" optional="false">C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package\Neuromorphic Toolbox for Control.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>

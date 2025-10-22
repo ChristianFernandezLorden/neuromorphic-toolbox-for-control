@@ -15,9 +15,10 @@ documentation for details.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
-
-   contents/index
+   :caption: Get Started:
+   
+   get_started/installation/main
+   get_started/usage/main
 
 
 

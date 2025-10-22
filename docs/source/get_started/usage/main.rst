@@ -1,5 +1,5 @@
-Content and formatting
-======================
+Getting Started
+===============
 
 These sections describe content-specific customization and formatting.
 
@@ -7,5 +7,5 @@ These sections describe content-specific customization and formatting.
     :maxdepth: 1
     :caption: Sections:
     
-    installation
+    interface
 

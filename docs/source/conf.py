@@ -55,6 +55,10 @@ html_js_files = [
     ("js/custom-icons.js", {"defer": "defer"}),
 ]
 
+html_css_files =[
+    "css/custom-style.css"
+]
+
 branch = version
 
 html_theme_options = {
@@ -91,14 +95,6 @@ html_theme_options = {
 }
 
 
-html_sidebars = {
-    "**": [
-        "navbar-logo.html",
-        "icon-links.html",
-        "search-button-field.html",
-        "sbt-sidebar-nav.html",
-    ]
-}
 
 latex_elements = {
     'preamble': r'''

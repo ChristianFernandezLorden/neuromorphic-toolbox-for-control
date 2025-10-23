@@ -91,28 +91,68 @@ html_sidebars = {
     ]
 }
 
+latex_elements = {
+    'preamble': r'''
+\usepackage{textcomp}
+\usepackage[math-style=literal]{unicode-math}
+\usepackage{pgfcore}
+\usepgflibrary {svg.path}
+\newcommand{\faMathWorks}{\begin{pgfpicture}\pgftransformyscale{-0.077ex}\pgftransformxscale{0.077ex}\pgfpathsvg{M5.765 21.661c-1.593-1.188-3.577-2.583-5.765-4.172l7.749-2.979 3.183 2.385c-2.385 2.781-3.973 3.776-5.167 4.771zM27.031 13.317c-0.599-1.588-0.995-3.181-1.593-4.771-0.593-1.792-1.187-3.38-2.183-4.771-0.4-0.593-1.192-1.989-2.187-1.989-0.199 0-0.396 0.197-0.599 0.197-0.595 0.204-1.391 1.391-1.589 2.188-0.593 0.995-1.792 2.583-2.583 3.577-0.199 0.396-0.6 0.797-0.797 0.996-0.593 0.395-1.193 0.995-1.984 1.391-0.204 0-0.401 0.197-0.599 0.197-0.595 0-0.996 0.396-1.391 0.593-0.595 0.6-1.193 1.391-1.787 1.991 0 0.197-0.204 0.395-0.401 0.599l2.984 2.181c2.188-2.583 4.771-5.167 6.557-10.135 0 0-0.593 5.369-5.364 11.131-2.985 3.38-5.371 5.171-5.767 5.567 0 0 0.792-0.197 1.589 0.199 1.593 0.593 2.385 2.781 2.984 4.369 0.396 1.193 0.989 2.188 1.391 3.38 1.589-0.396 2.584-0.995 3.579-1.989 0.989-0.989 1.984-2.183 2.979-3.177 1.792-2.187 3.975-4.968 6.756-3.577 0.4 0.197 0.995 0.599 1.192 0.796 0.599 0.396 0.995 0.792 1.593 1.391 0.991 0.792 1.391 1.391 2.183 1.787-1.984-3.973-3.375-7.948-4.968-12.125z}\pgfsetbaseline{-2.1ex}\pgfusepath{fill}\end{pgfpicture}}
+\usepackage{hyperref}
+    '''
+}
+
 
 rst_prolog = """
+.. role:: latex(raw)
+    :format: latex
+
+.. role:: html(raw)
+    :format: html
+
 .. |matlab| replace:: MATLAB®
 .. |simulink| replace:: Simulink®
 .. |matlab_simulink| replace:: MATLAB® and Simulink®
 .. |mathworks| replace:: MathWorks®
 .. |github| replace:: GitHub
 .. |mathworks-file-exchange| replace:: MathWorks® File Exchange
-.. |fa-github| raw:: html
+.. |fa-github-html| raw:: html
 
     <i class="fa-brands fa-github"></i>
     
-.. |fa-mathworks| raw:: html
+.. |fa-github-latex| raw:: latex
+
+    \\faGithub
+
+.. |fa-github| replace:: |fa-github-html|\\ |fa-github-latex|
+    
+.. |fa-mathworks-html| raw:: html
 
     <i class="fa-custom fa-mathworks"></i>
+    
+.. |fa-mathworks-latex| raw:: latex
 
-.. |github-link| raw:: html
+    \\faMathWorks
+    
+.. |fa-mathworks| replace:: |fa-mathworks-html|\\ |fa-mathworks-latex|
+
+.. |github-link-html| raw:: html
 
     <a href="""+github_link+"""><i class="fa-brands fa-github"></i>GitHub</a>
+    
+.. |github-link-latex| raw:: latex
 
-.. |mathworks-file-exchange-link| raw:: html
+    \\href{"""+github_link+"""}{\\faGithub GitHub} 
+    
+.. |github-link| replace:: |github-link-html|\\ |github-link-latex|
+
+.. |mathworks-file-exchange-link-html| raw:: html
 
     <a href="""+mathworks_link+"""><i class="fa-custom fa-mathworks"></i>MathWorks® File Exchange</a>
+
+.. |mathworks-file-exchange-link-latex| raw:: latex
+
+    \\href{"""+mathworks_link+"""}{\\faMathWorks MathWorks® File Exchange} 
     
+.. |mathworks-file-exchange-link| replace:: |mathworks-file-exchange-link-html|\\ |mathworks-file-exchange-link-latex|
 """

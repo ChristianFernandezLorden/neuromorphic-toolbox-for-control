@@ -19,9 +19,19 @@ Installing the toolbox in |matlab_simulink| using the integrated *Add-On Explore
 #. Type *Neuromorphic Toolbox for Control* in the search bar and click on the toolbox.
 #. On the toolbox page, click on the *Add* button.
 
-.. card:: Add-On Explorer Installation
+.. only:: html
+    
+    .. card:: Add-On Explorer Installation
 
-    .. image:: images/addon_manager.png
+        .. image:: images/addon_manager.png
+
+.. only:: latex
+
+    +------------------------------------------------+
+    | Add-On Explorer Installation                   |
+    +================================================+
+    | .. image:: images/addon_manager.png            | 
+    +------------------------------------------------+
 
 .. _toolbox-file-install:
 
@@ -30,16 +40,26 @@ Toolbox Installation File
 
 Installing the toolbox by using the add-on installation file requires downloading the ``Neuromorphic Toolbox for Control.mltbx`` file from |github-link| in the realease asset or |mathworks-file-exchange-link| using the toolbox download button.
 
-.. grid:: 2
+.. only:: html
 
-    .. grid-item-card::  |github| Download
+    .. grid:: 2
 
-        .. image:: images/toolbox_installer_github.png
+        .. grid-item-card::  |github| Download
 
-    .. grid-item-card::  |mathworks-file-exchange| Download
-        :class-item: sd-align-minor-start
+            .. image:: images/toolbox_installer_github.png
 
-        .. image:: images/toolbox_installer_matlab.png
+        .. grid-item-card::  |mathworks-file-exchange| Download
+            :class-item: sd-align-minor-start
+
+            .. image:: images/toolbox_installer_matlab.png
+
+.. only:: latex
+
+    +------------------------------------------------+------------------------------------------------+
+    | GitHub Download                                | Mathworks Download                             |
+    +================================================+================================================+
+    | .. image:: images/toolbox_installer_github.png | .. image:: images/toolbox_installer_matlab.png |
+    +------------------------------------------------+------------------------------------------------+
 
 
 Then double clicking the add-on installation file will launch the installation process.

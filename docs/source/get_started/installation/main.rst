@@ -20,7 +20,7 @@ Installing the toolbox in |matlab_simulink| using the integrated *Add-On Explore
 #. On the toolbox page, click on the *Add* button.
 
 .. only:: html
-    
+
     .. card:: Add-On Explorer Installation
 
         .. image:: images/addon_manager.png
@@ -82,6 +82,7 @@ This method will also download useless files for the toolbox such as this docume
 
 A manual installation requires downloading the source code from |github-link| by cloning it or downloading the zip or |mathworks-file-exchange-link| using the zip download button.
 Then unpack the source code and place the directories ``blocks``, ``code`` and ``icons`` as well as their subdirectories in the |matlab| `path <https://nl.mathworks.com/help/matlab/matlab_env/what-is-the-matlab-search-path.html>`_.
+
 Alternatively, you can repackage the toolbox into a ``.mltbx`` file using the toolbox project file ``toolbox_package/neuromorphic-toolbox-for-control.prj``, and install it according to :ref:`toolbox-file-install`.
 
 

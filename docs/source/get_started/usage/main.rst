@@ -1,7 +1,7 @@
-Getting Started
-===============
+Using the Toolbox
+=================
 
-These sections describe content-specific customization and formatting.
+These sections describes the way of interracting and building using the toolbox.
 
 .. toctree::
     :maxdepth: 1

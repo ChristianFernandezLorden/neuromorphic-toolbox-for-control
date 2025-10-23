@@ -20,11 +20,15 @@ documentation for details.
    get_started/installation/main
    get_started/usage/main
 
-
-
-
 .. toctree::
    :maxdepth: 1
    :caption: Examples:
 
-   examples/index
+   examples/main
+
+.. toctree::
+   :maxdepth: 1
+   :caption: : Package Reference
+
+   reference/blocks/main
+   reference/functions/main

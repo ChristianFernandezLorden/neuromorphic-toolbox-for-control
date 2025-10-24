@@ -1,4 +1,51 @@
 function MismatchOptionStruct = set_options(varargin)
+    % Generates a MismatchOptionStruct based on the input
+    % Name-Value pairs.
+    % 
+    % Note: Exclusion (of blocks, mismatch or type) always take precedence over inclusion. 
+    % Thus using *'all'* key result in all types/mismatch to be eliminated.
+    %
+    % Description
+    % -----------
+    %   MismatchOptionStruct = set_options(Name, Value, ...)
+    %       Generate a new MismatchOptionStruct from the name-value options.
+    %
+    %   MismatchOptionStruct = set_options(MismatchOptionStruct, Name, Value, ...)
+    %       Apply the name-value options to a given MismatchOptionStruct.
+    % Inputs
+    % ------
+    %   Name: char or string
+    %       Name of the option to set.
+    %   Value: misc
+    %       Value of the option to set.
+    %
+    % Optional Input
+    % --------------
+    %   MismatchOptionStruct: struct
+    %       Preexisting MismatchOptionStruct.
+    %
+    % Output
+    % ------
+    %   MismatchOptionStruct: struct
+    %       Resulting structuring containing the preset options.
+    %
+    % :Name-Value Inputs:
+    %   ``'blockIncludeList'``: (char, cell(char), string) -- path(s) to specific block(s) to include in mismatch.
+    %   
+    %   ``'blockExcludeList'``: (char, cell(char), string) -- path(s) to specific block(s) to exclude of mismatch.
+    %   
+    %   ``'mismatchIncludeList'``: (char, cell(char), string) -- specific mismatch(es) categories to include generation (special key *'all'* available).
+    %   
+    %   ``'mismatchExcludeList'``: (char, cell(char), string) -- specific mismatch(es) categories to exclude generation (special key *'all'* available).
+    %   
+    %   ``'blockTypeIncludeList'``: (char, cell(char), string) -- specific block type(s) to include in mismatch (special key *'all'* available).
+    %   
+    %   ``'blockTypeExcludeList'``: (char, cell(char), string) -- specific block type(s) to exclude of mismatch (special key *'all'* available).
+    %   
+    %   ``'simParamList'``: (struct) -- parameter value to apply to model before generating mismatch.
+    %   
+    %   ``'mismatchFunctions'``: (containers.Map(char,containers.Map(char,function_handle))) -- function(s) that apply mismatch to a specific block type.
+
     varg = varargin;
     if mod(length(varargin),2) ~= 0
         if isstruct(varg{1}) && length(varg{1}) == 1 && isfield(varg{1},'MismatchOptionStruct')

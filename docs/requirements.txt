@@ -3,3 +3,4 @@ sphinx-togglebutton
 sphinx-design
 sphinxcontrib-bibtex
 sphinx-book-theme
+sphinxcontrib-matlabdomain

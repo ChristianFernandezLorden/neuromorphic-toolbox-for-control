@@ -1,21 +1,21 @@
 function simins = apply_to_system(model, mismatch_params, varargin)
-    %mismatch_system Add mismatch to all neuromorphic blocks of a simulink model
-    %   simin = mismatch_system(model, mismatch_width, mismatch_std) add a
+    %apply_to_system Add mismatch to all neuromorphic blocks of a simulink model
+    %   simin = apply_to_system(model, mismatch_width, mismatch_std) add a
     %   mismatch on all neuromorphic blocks of a given model with a given
     %   witdh and standard deviation to the standard law.
     %   
-    %   simins = mismatch_system(model, mismatch_width, mismatch_std,
+    %   simins = apply_to_system(model, mismatch_width, mismatch_std,
     %   num_sims) produce the same thing but generates num_sims different
     %   mismatch systems.
     %
-    %   simin = mismatch_system(model, mismatch_width, mismatch_std,
+    %   simin = apply_to_system(model, mismatch_width, mismatch_std,
     %   num_sims, options)
-    %   simins = mismatch_system(model, mismatch_width, mismatch_std, 
+    %   simins = apply_to_system(model, mismatch_width, mismatch_std, 
     %   options) add different options to the mismatching process.
     
     % block_type_list, block_whitelist, block_blacklist, mismatch_list, params, sims_or_nb_sims
     if nargin < 2
-        error("mismatch_system requires at least 2 arguments (model, mismatch_params)")
+        error("apply_to_system requires at least 2 arguments (model, mismatch_params)")
     end
 
     load_system(model);

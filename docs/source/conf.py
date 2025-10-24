@@ -34,7 +34,22 @@ extensions = [
     'sphinx.ext.duration',
     'sphinxcontrib.bibtex',
     'sphinx_design',
+    'sphinx.ext.autodoc', 
+    'sphinxcontrib.matlab',
+    'sphinx.ext.napoleon',
 ]
+this_dir = os.path.dirname(os.path.abspath(__file__))
+matlab_src_dir = os.path.abspath(os.path.join(this_dir, '../../code'))
+primary_domain = 'mat'
+napoleon_numpy_docstring = True
+napoleon_custom_sections = [('Inputs','params_style'),('Input','params_style'),
+                            ('Outputs','params_style'),('Output','params_style'),
+                            ('Required Inputs','params_style'),('Required Input','params_style'),
+                            'Authors',('Optional Inputs','params_style'),
+                            ('Optional Input','params_style'),('Description','params_style'),'Name-Value Inputs']
+add_module_names = False
+napoleon_use_admonition_for_notes = True
+
 
 templates_path = ['_templates']
 exclude_patterns = []

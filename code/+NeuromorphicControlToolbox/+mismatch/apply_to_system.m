@@ -1,21 +1,61 @@
-function simins = apply_to_system(model, mismatch_params, varargin)
-    %apply_to_system Add mismatch to all neuromorphic blocks of a simulink model
-    %   simin = apply_to_system(model, mismatch_width, mismatch_std) add a
-    %   mismatch on all neuromorphic blocks of a given model with a given
-    %   witdh and standard deviation to the standard law.
-    %   
-    %   simins = apply_to_system(model, mismatch_width, mismatch_std,
-    %   num_sims) produce the same thing but generates num_sims different
-    %   mismatch systems.
+function simins = apply_to_system(model, mismatchParams, varargin)
+    % Add mismatch to all neuromorphic blocks of a simulink model.
     %
-    %   simin = apply_to_system(model, mismatch_width, mismatch_std,
-    %   num_sims, options)
-    %   simins = apply_to_system(model, mismatch_width, mismatch_std, 
-    %   options) add different options to the mismatching process.
+    % Description
+    % -----------
+    %   simIn = apply_to_system(model, mismatchParams)
+    %       Use the base mismatchOption defined by :func:`base_options` and generate
+    %       a single Simulink.SimulationInput with mismatch applied.
+    %
+    %   simIn = apply_to_system(model, mismatchParams, nbSim)
+    %       Use the base mismatchOption defined by :func:`base_options` and generate
+    %       a nbSim Simulink.SimulationInput with mismatch applied.
+    %
+    %   simIn = apply_to_system(model, mismatchParams, simIn)
+    %       Use the base mismatchOption defined by :func:`base_options` and returns
+    %       the input Simulink.SimulationInput with mismatch applied.
+    %
+    %   simIn = apply_to_system(__, mismatchOption)
+    %       Give a custom mismatchOption that replaces the base mismatchOption.
+    %
+    %   simIn = apply_to_system(__, name, value, ...)
+    %       Create a custom mismatchOption that replaces the base mismatchOption using
+    %       the syntax of :func:`set_options`.
+    %
+    %   simIn = apply_to_system(__, mismatchOption, name, value)
+    %       Give a custom mismatchOption that replaces the base mismatchOption and 
+    %       apply the name-value options using the syntax of :func:`set_options`.
+    % Inputs
+    % ------
+    %   model: char or string
+    %       Name of the model to mismatch.
+    %   mismatchParams: struct
+    %       Parameter dictionary that is passed to the internal mismatch functions.
+    %       Pass and empty dictionary with ``struct()`` if unecessary.
+    %   nbSim: int
+    %       Number of Simulink.SimulationInput to generate.
+    %   simIn: Simulink.SimulationInput
+    %       Simulink.SimulationInput configuration to apply the mismatch to.
+    %
+    % Optional Input
+    % --------------
+    %   Name: char or string
+    %       Name of the option to set.
+    %   Value: misc
+    %       Value of the option to set.
+    %   MismatchOptionStruct: struct
+    %       Preexisting MismatchOptionStruct.
+    %
+    % Output
+    % ------
+    %   simIn: Simulink.SimulationInput
+    %       Resulting SimulationInput configuration.
+    %
+    % :Name-Value Inputs:
+    %   see :func:`set_options`
     
-    % block_type_list, block_whitelist, block_blacklist, mismatch_list, params, sims_or_nb_sims
     if nargin < 2
-        error("apply_to_system requires at least 2 arguments (model, mismatch_params)")
+        error("apply_to_system requires at least 2 arguments (model, mismatchParams)")
     end
 
     load_system(model);
@@ -58,7 +98,7 @@ function simins = apply_to_system(model, mismatch_params, varargin)
 
     all_blocks = find_system(model, 'LookUnderMasks', 'off', 'FollowLinks', 'on');
 
-    simins = apply_mismatch_to_simins(simins, all_blocks, model_work, options, mismatch_params);
+    simins = apply_mismatch_to_simins(simins, all_blocks, model_work, options, mismatchParams);
 
     if ~isempty(param_fields)
         reload(model_work);
@@ -133,7 +173,7 @@ function [simins, options] = parse_input(model, varg)
     end
 end
 
-function simins = apply_mismatch_to_simins(simins, all_blocks, model_work, options, mismatch_params)
+function simins = apply_mismatch_to_simins(simins, all_blocks, model_work, options, mismatchParams)
     for i = 1:length(all_blocks)
         blPath = all_blocks{i};
         try
@@ -161,7 +201,7 @@ function simins = apply_mismatch_to_simins(simins, all_blocks, model_work, optio
                 func_map = options.mismatch_func_map(type);
                 for type_cell = intersect(keys(func_map), options.mismatch_list)
                     func = func_map(type_cell{1});
-                    simins = func(blPath, simins, model_work, mismatch_params);
+                    simins = func(blPath, simins, model_work, mismatchParams);
                 end
             else
                 warning(['Block "' blPath '" has type "' type '" which is not a supported type.'])

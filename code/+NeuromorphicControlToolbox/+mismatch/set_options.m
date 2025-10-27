@@ -1,5 +1,5 @@
-function MismatchOptionStruct = set_options(varargin)
-    % Generates a MismatchOptionStruct based on the input
+function mismatchOption = set_options(varargin)
+    % Generates a mismatchOption based on the input
     % Name-Value pairs.
     % 
     % Note: Exclusion (of blocks, mismatch or type) always take precedence over inclusion. 
@@ -7,29 +7,31 @@ function MismatchOptionStruct = set_options(varargin)
     %
     % Description
     % -----------
-    %   MismatchOptionStruct = set_options(Name, Value, ...)
-    %       Generate a new MismatchOptionStruct from the name-value options.
+    %   mismatchOption = set_options(name, value, ...)
+    %       Generate a new mismatchOption from the name-value options.
     %
-    %   MismatchOptionStruct = set_options(MismatchOptionStruct, Name, Value, ...)
-    %       Apply the name-value options to a given MismatchOptionStruct.
+    %   mismatchOption = set_options(mismatchOption, name, value, ...)
+    %       Apply the name-value options to a given mismatchOption.
     % Inputs
     % ------
-    %   Name: char or string
+    %   name: char or string
     %       Name of the option to set.
-    %   Value: misc
+    %   value: misc
     %       Value of the option to set.
     %
     % Optional Input
     % --------------
-    %   MismatchOptionStruct: struct
-    %       Preexisting MismatchOptionStruct.
+    %   mismatchOption: struct
+    %       Preexisting mismatchOption.
     %
     % Output
     % ------
-    %   MismatchOptionStruct: struct
+    %   mismatchOption: struct
     %       Resulting structuring containing the preset options.
     %
     % :Name-Value Inputs:
+    %   ``'baseOptions'``: (char, string) -- 'on' to specify adding the option defined by :func:`base_options`.
+    %
     %   ``'blockIncludeList'``: (char, cell(char), string) -- path(s) to specific block(s) to include in mismatch.
     %   
     %   ``'blockExcludeList'``: (char, cell(char), string) -- path(s) to specific block(s) to exclude of mismatch.
@@ -46,24 +48,26 @@ function MismatchOptionStruct = set_options(varargin)
     %   
     %   ``'mismatchFunctions'``: (containers.Map(char,containers.Map(char,function_handle))) -- function(s) that apply mismatch to a specific block type.
 
+    import NeuromorphicControlToolbox.mismatch.*
+
     varg = varargin;
     if mod(length(varargin),2) ~= 0
-        if isstruct(varg{1}) && length(varg{1}) == 1 && isfield(varg{1},'MismatchOptionStruct')
-            MismatchOptionStruct = varg{1};
+        if isstruct(varg{1}) && length(varg{1}) == 1 && isfield(varg{1},'mismatchOptionStruct')
+            mismatchOption = varg{1};
             varg = varg(2:end);
         else
-            error("Arguments must be pairs or the first can be an existing MismatchOptionStruct")
+            error("Arguments must be pairs or the first can be an existing mismatchOption")
         end
     else
-        MismatchOptionStruct = struct('MismatchOptionStruct', 1);
-        MismatchOptionStruct.mismatch_func_map = containers.Map();
-        MismatchOptionStruct.block_includelist = {};
-        MismatchOptionStruct.block_excludelist = {};
-        MismatchOptionStruct.mismatch_includelist = {};
-        MismatchOptionStruct.mismatch_excludelist = {};
-        MismatchOptionStruct.blocktype_includelist = {};
-        MismatchOptionStruct.blocktype_excludelist = {};
-        MismatchOptionStruct.params = struct();
+        mismatchOption = struct('mismatchOptionStruct', 1);
+        mismatchOption.mismatch_func_map = containers.Map();
+        mismatchOption.block_includelist = {};
+        mismatchOption.block_excludelist = {};
+        mismatchOption.mismatch_includelist = {};
+        mismatchOption.mismatch_excludelist = {};
+        mismatchOption.blocktype_includelist = {};
+        mismatchOption.blocktype_excludelist = {};
+        mismatchOption.params = struct();
     end
 
     
@@ -79,6 +83,18 @@ function MismatchOptionStruct = set_options(varargin)
         end
 
         switch key
+            case 'baseOptions'
+                if isstring(value)
+                    value = convertStringsToChars(value);
+                end
+                if ischar(value)
+                    if ismember(lower(value), {'on', 'yes'})
+                        mismatchOption = base_options(mismatchOption);
+                    end
+                else
+                    error("baseOptions must be a string or char array.")
+                end
+
             case 'blockIncludeList'
                 if isstring(value)
                     value = convertStringsToChars(value);
@@ -89,10 +105,10 @@ function MismatchOptionStruct = set_options(varargin)
                 if ~iscellstr(value)
                     error("Block list must be a string, string array, char array or cell array of char arrays.")
                 end
-                if ~isempty(MismatchOptionStruct.block_includelist)
+                if ~isempty(mismatchOption.block_includelist)
                     warning("Duplicate blockIncludeList parameters call.")
                 end
-                MismatchOptionStruct.block_includelist = [MismatchOptionStruct.block_includelist, reshape(value, 1, [])];
+                mismatchOption.block_includelist = [mismatchOption.block_includelist, reshape(value, 1, [])];
 
             case 'blockExcludeList'
                 if isstring(value)
@@ -104,10 +120,10 @@ function MismatchOptionStruct = set_options(varargin)
                 if ~iscellstr(value)
                     error("Block list must be a string, string array, char array or cell array of char arrays.")
                 end
-                if ~isempty(MismatchOptionStruct.block_excludelist)
+                if ~isempty(mismatchOption.block_excludelist)
                     warning("Duplicate blockExcludeList parameters call.")
                 end
-                MismatchOptionStruct.block_excludelist = [MismatchOptionStruct.block_excludelist, reshape(value, 1, [])];
+                mismatchOption.block_excludelist = [mismatchOption.block_excludelist, reshape(value, 1, [])];
 
             case 'mismatchIncludeList'
                 if isstring(value)
@@ -116,22 +132,22 @@ function MismatchOptionStruct = set_options(varargin)
                 if ischar(value)
                     switch value 
                         case 'all'
-                            MismatchOptionStruct.mismatch_includelist = {'all'};
+                            mismatchOption.mismatch_includelist = {'all'};
                             continue;
                         otherwise
                             value = {value};
                     end
                 end
-                if ismember('all', MismatchOptionStruct.mismatch_includelist)
+                if ismember('all', mismatchOption.mismatch_includelist)
                     warning("Duplicate mismatchIncludeList parameters call after an 'all' call.")
                 else
                     if ~iscellstr(value)
                         error("Block list must be a string, string array, char array or cell array of char arrays.")
                     end
-                    if ~isempty(MismatchOptionStruct.mismatch_includelist)
+                    if ~isempty(mismatchOption.mismatch_includelist)
                         warning("Duplicate mismatchIncludeList parameters call.")
                     end
-                    MismatchOptionStruct.mismatch_includelist = [MismatchOptionStruct.mismatch_includelist, reshape(value, 1, [])];
+                    mismatchOption.mismatch_includelist = [mismatchOption.mismatch_includelist, reshape(value, 1, [])];
                 end
 
             case 'mismatchExcludeList'
@@ -141,23 +157,23 @@ function MismatchOptionStruct = set_options(varargin)
                 if ischar(value)
                     switch value 
                         case 'all'
-                            MismatchOptionStruct.mismatch_excludelist = {'all'};
+                            mismatchOption.mismatch_excludelist = {'all'};
                             warning("mismatchExcludeList parameter received an 'all' call, no mismatch will be applied.")
                             continue;
                         otherwise
                             value = {value};
                     end
                 end
-                if ismember('all', MismatchOptionStruct.mismatch_excludelist)
+                if ismember('all', mismatchOption.mismatch_excludelist)
                     warning("Duplicate mismatchExcludeList parameters call after an 'all' call.")
                 else
                     if ~iscellstr(value)
                         error("Block list must be a string, string array, char array or cell array of char arrays.")
                     end
-                    if ~isempty(MismatchOptionStruct.mismatch_excludelist)
+                    if ~isempty(mismatchOption.mismatch_excludelist)
                         warning("Duplicate mismatchExcludeList parameters call.")
                     end
-                    MismatchOptionStruct.mismatch_excludelist = [MismatchOptionStruct.mismatch_excludelist, reshape(value, 1, [])];
+                    mismatchOption.mismatch_excludelist = [mismatchOption.mismatch_excludelist, reshape(value, 1, [])];
                 end
 
             case 'blockTypeIncludeList'
@@ -167,22 +183,22 @@ function MismatchOptionStruct = set_options(varargin)
                 if ischar(value)
                     switch value 
                         case 'all'
-                            MismatchOptionStruct.blocktype_includelist = {'all'};
+                            mismatchOption.blocktype_includelist = {'all'};
                             continue;
                         otherwise
                             value = {value};
                     end
                 end
-                if ismember('all', MismatchOptionStruct.blocktype_includelist)
+                if ismember('all', mismatchOption.blocktype_includelist)
                     warning("Duplicate blockTypeIncludeList parameters call after an 'all' call.")
                 else
                     if ~iscellstr(value)
                         error("Block list must be a string, string array, char array or cell array of char arrays.")
                     end
-                    if ~isempty(MismatchOptionStruct.blocktype_includelist)
+                    if ~isempty(mismatchOption.blocktype_includelist)
                         warning("Duplicate blockTypeIncludeList parameters call.")
                     end
-                    MismatchOptionStruct.blocktype_includelist = [MismatchOptionStruct.blocktype_includelist, reshape(value, 1, [])];
+                    mismatchOption.blocktype_includelist = [mismatchOption.blocktype_includelist, reshape(value, 1, [])];
                 end
 
             case 'blockTypeExcludeList'
@@ -192,23 +208,23 @@ function MismatchOptionStruct = set_options(varargin)
                 if ischar(value)
                     switch value 
                         case 'all'
-                            MismatchOptionStruct.blocktype_excludelist = {'all'};
+                            mismatchOption.blocktype_excludelist = {'all'};
                             warning("blockTypeExcludeList parameter received an 'all' call, only blocks in blockIncludeList will be mismatched.")
                             continue;
                         otherwise
                             value = {value};
                     end
                 end
-                if ismember('all', MismatchOptionStruct.blocktype_excludelist)
+                if ismember('all', mismatchOption.blocktype_excludelist)
                     warning("Duplicate blockTypeExcludeList parameters call after an 'all' call.")
                 else
                     if ~iscellstr(value)
                         error("Block list must be a string, string array, char array or cell array of char arrays.")
                     end
-                    if ~isempty(MismatchOptionStruct.blocktype_excludelist)
+                    if ~isempty(mismatchOption.blocktype_excludelist)
                         warning("Duplicate blockTypeExcludeList parameters call.")
                     end
-                    MismatchOptionStruct.blocktype_excludelist = [MismatchOptionStruct.blocktype_excludelist, reshape(value, 1, [])];
+                    mismatchOption.blocktype_excludelist = [mismatchOption.blocktype_excludelist, reshape(value, 1, [])];
                 end
 
             case 'simParamList'
@@ -216,16 +232,16 @@ function MismatchOptionStruct = set_options(varargin)
                     error("Param list must be a single struct.")
                 end
 
-                if isempty(fieldnames(MismatchOptionStruct.params))
-                    MismatchOptionStruct.params = value;
+                if isempty(fieldnames(mismatchOption.params))
+                    mismatchOption.params = value;
                 else
                     warning("Duplicate simParamList parameters call.")
                     fields = fieldnames(value);
                     for j = 1:length(fields)
-                        if isfield(MismatchOptionStruct.params, fields{j})
+                        if isfield(mismatchOption.params, fields{j})
                             warning(['Erasing value "' fields{j} '" due to duplicate simParamList parameters call.'])
                         end
-                        MismatchOptionStruct.params.(fields{j}) = value.(fields{j});
+                        mismatchOption.params.(fields{j}) = value.(fields{j});
                     end
                 end
 
@@ -236,13 +252,13 @@ function MismatchOptionStruct = set_options(varargin)
                 
                 newKeys = keys(value);
                 for j = 1:length(newKeys)
-                    if MismatchOptionStruct.mismatch_func_map.isKey(newKeys{j})
+                    if mismatchOption.mismatch_func_map.isKey(newKeys{j})
                         warning(['Overwriting mismatch function for "' newKeys{j} '" block.'])
                     end
                     if ~isa(value(newKeys{j}), 'containers.Map')
                         error("mismatchFunctions containers.Map must have containers.Map values.")
                     end
-                    MismatchOptionStruct.mismatch_func_map(newKeys{j}) = value(newKeys{j});
+                    mismatchOption.mismatch_func_map(newKeys{j}) = value(newKeys{j});
                 end
 
             otherwise
@@ -250,22 +266,22 @@ function MismatchOptionStruct = set_options(varargin)
         end
     end
 
-    MismatchOptionStruct.block_includelist = unique(MismatchOptionStruct.block_includelist);
-    MismatchOptionStruct.block_includelist = MismatchOptionStruct.block_includelist(~cellfun(@isempty, MismatchOptionStruct.block_includelist));
+    mismatchOption.block_includelist = unique(mismatchOption.block_includelist);
+    mismatchOption.block_includelist = mismatchOption.block_includelist(~cellfun(@isempty, mismatchOption.block_includelist));
 
-    MismatchOptionStruct.block_excludelist = unique(MismatchOptionStruct.block_excludelist);
-    MismatchOptionStruct.block_excludelist = MismatchOptionStruct.block_excludelist(~cellfun(@isempty, MismatchOptionStruct.block_excludelist));
+    mismatchOption.block_excludelist = unique(mismatchOption.block_excludelist);
+    mismatchOption.block_excludelist = mismatchOption.block_excludelist(~cellfun(@isempty, mismatchOption.block_excludelist));
 
-    MismatchOptionStruct.blocktype_includelist = unique(MismatchOptionStruct.blocktype_includelist);
-    MismatchOptionStruct.blocktype_includelist = MismatchOptionStruct.blocktype_includelist(~cellfun(@isempty, MismatchOptionStruct.blocktype_includelist));
+    mismatchOption.blocktype_includelist = unique(mismatchOption.blocktype_includelist);
+    mismatchOption.blocktype_includelist = mismatchOption.blocktype_includelist(~cellfun(@isempty, mismatchOption.blocktype_includelist));
 
-    MismatchOptionStruct.blocktype_excludelist = unique(MismatchOptionStruct.blocktype_excludelist);
-    MismatchOptionStruct.blocktype_excludelist = MismatchOptionStruct.blocktype_excludelist(~cellfun(@isempty, MismatchOptionStruct.blocktype_excludelist));
+    mismatchOption.blocktype_excludelist = unique(mismatchOption.blocktype_excludelist);
+    mismatchOption.blocktype_excludelist = mismatchOption.blocktype_excludelist(~cellfun(@isempty, mismatchOption.blocktype_excludelist));
 
-    MismatchOptionStruct.mismatch_includelist = unique(MismatchOptionStruct.mismatch_includelist);
-    MismatchOptionStruct.mismatch_includelist = MismatchOptionStruct.mismatch_includelist(~cellfun(@isempty, MismatchOptionStruct.mismatch_includelist));
+    mismatchOption.mismatch_includelist = unique(mismatchOption.mismatch_includelist);
+    mismatchOption.mismatch_includelist = mismatchOption.mismatch_includelist(~cellfun(@isempty, mismatchOption.mismatch_includelist));
 
-    MismatchOptionStruct.mismatch_excludelist = unique(MismatchOptionStruct.mismatch_excludelist);
-    MismatchOptionStruct.mismatch_excludelist = MismatchOptionStruct.mismatch_excludelist(~cellfun(@isempty, MismatchOptionStruct.mismatch_excludelist));
+    mismatchOption.mismatch_excludelist = unique(mismatchOption.mismatch_excludelist);
+    mismatchOption.mismatch_excludelist = mismatchOption.mismatch_excludelist(~cellfun(@isempty, mismatchOption.mismatch_excludelist));
 end
 

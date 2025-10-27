@@ -4,3 +4,4 @@ sphinx-design
 sphinxcontrib-bibtex
 sphinx-book-theme
 sphinxcontrib-matlabdomain
+sphinx-copybutton

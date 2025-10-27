@@ -37,6 +37,7 @@ extensions = [
     'sphinx.ext.autodoc', 
     'sphinxcontrib.matlab',
     'sphinx.ext.napoleon',
+    'sphinx_copybutton'
 ]
 this_dir = os.path.dirname(os.path.abspath(__file__))
 matlab_src_dir = os.path.abspath(os.path.join(this_dir, '../../code'))

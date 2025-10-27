@@ -1,4 +1,46 @@
-function MismatchOptionStruct = base_options(varargin)
+function mismatchOption = base_options(varargin)
+    % Generates a mismatchOption base configuration for blocks of the Simulink library.
+    %
+    % Description
+    % -----------
+    %   mismatchOption = base_options()
+    %       Generates the base mismatchOption for the toolbox.
+    %
+    %   mismatchOption = base_options(mismatchOption)
+    %       Add to a custom mismatchOption the base mismatchOption for the toolbox.
+    %
+    %   mismatchOption = base_options(name, value, ...)
+    %       Create a mismatchOption using the syntax of :func:`set_options` then add to it
+    %       the base mismatchOption for the toolbox.
+    %
+    %   mismatchOption = base_options(mismatchOption, name, value)
+    %       Add to a custom mismatchOption then add name-value options using the syntax of :func:`set_options` 
+    %       then add to it the base mismatchOption for the toolbox.
+    %
+    % Inputs
+    % ------
+    %   name: char or string
+    %       Name of the option to set.
+    %   value: misc
+    %       Value of the option to set.
+    %
+    % Optional Input
+    % --------------
+    %   mismatchOption: struct
+    %       Preexisting mismatchOption.
+    %
+    % Output
+    % ------
+    %   mismatchOption: struct
+    %       Resulting structuring containing the preset options.
+    %
+    % :Name-Value Inputs:
+    %   see :func:`set_options`
+    %
+    % Authors
+    % -------------
+    %   test_base_options: struct
+
     import NeuromorphicControlToolbox.mismatch.*
 
     mismatch_functions = containers.Map( ...
@@ -17,7 +59,7 @@ function MismatchOptionStruct = base_options(varargin)
         }...
      );
 
-    MismatchOptionStruct = set_options(varargin{:}, 'mismatchFunctions', mismatch_functions);
+    mismatchOption = set_options(varargin{:}, 'mismatchFunctions', mismatch_functions);
 end
 
 function mismatch_map = create_mismatch_func_tunable_sigmoid()

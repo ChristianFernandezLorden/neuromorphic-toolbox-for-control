@@ -18,7 +18,7 @@ else:
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Neuromorphic Toolbox for Control'
+project = 'NeuroCont'
 copyright = '2025-%Y, Université de Liège'
 author = 'Christian Fernandez Lorden'
 if 'READTHEDOCS' in os.environ:
@@ -37,18 +37,20 @@ extensions = [
     'sphinx.ext.autodoc', 
     'sphinxcontrib.matlab',
     'sphinx.ext.napoleon',
+    'sphinx_autodoc_typehints',
     'sphinx_copybutton'
 ]
-this_dir = os.path.dirname(os.path.abspath(__file__))
-matlab_src_dir = os.path.abspath(os.path.join(this_dir, '../../code'))
-primary_domain = 'mat'
 napoleon_numpy_docstring = True
 napoleon_custom_sections = [('Inputs','params_style'),('Input','params_style'),
                             ('Outputs','params_style'),('Output','params_style'),
                             ('Required Inputs','params_style'),('Required Input','params_style'),
                             'Authors',('Optional Inputs','params_style'),
                             ('Optional Input','params_style'),('Description','params_style'),'Name-Value Inputs']
-add_module_names = False
+this_dir = os.path.dirname(os.path.abspath(__file__))
+matlab_src_dir = os.path.abspath(os.path.join(this_dir, '../../code'))
+primary_domain = 'mat'
+napoleon_use_param = True
+
 napoleon_use_admonition_for_notes = True
 
 
@@ -183,3 +185,5 @@ rst_prolog = """
     
 .. |mathworks-file-exchange-link| replace:: |mathworks-file-exchange-link-html|\\ |mathworks-file-exchange-link-latex|
 """
+
+matlab_short_links = False

@@ -32,9 +32,12 @@ resources
 % example/.svn
 %
 % All files in a subfolder of the toolbox folder:
-.git/*
+.*
 slprj/*
-toolbox_package/*
+toolbox_package
+docs
+interface
+
 %
 % All files of a certain name in all subfolders of the toolbox folder:
 % **/.svn

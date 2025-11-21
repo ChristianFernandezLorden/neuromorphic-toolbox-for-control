@@ -4,3 +4,8 @@
     white-space: normal;
     font-weight: bold;
 }
+
+.bolditalic {
+    font-weight: bold;
+    font-style: italic;
+}

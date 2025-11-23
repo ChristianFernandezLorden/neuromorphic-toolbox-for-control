@@ -1,6 +1,6 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="4054555664" file="C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package\neuromorphic-toolbox-for-control.prj" location="C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package" name="neuromorphic-toolbox-for-control" target="target.toolbox" target-name="Package Toolbox">
-    <param.appname>Neuromorphic Toolbox for Control</param.appname>
+  <configuration build-checksum="4054555664" file="C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package\NeuroCont.prj" location="C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package" name="NeuroCont" target="target.toolbox" target-name="Package Toolbox">
+    <param.appname>NeuroCont</param.appname>
     <param.authnamewatermark>Christian Fernandez Lorden</param.authnamewatermark>
     <param.email>Christian.FernandezLorden@uliege.be</param.email>
     <param.company>Université de Liège</param.company>
@@ -8,7 +8,7 @@
     <param.description />
     <param.screenshot>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\icons\toolbox_icon.png</param.screenshot>
     <param.version>0.2.6</param.version>
-    <param.output>${PROJECT_ROOT}\Neuromorphic Toolbox for Control.mltbx</param.output>
+    <param.output>${PROJECT_ROOT}\NeuroCont.mltbx</param.output>
     <param.products.name />
     <param.products.id />
     <param.products.version />
@@ -32,9 +32,13 @@ resources
 % example/.svn
 %
 % All files in a subfolder of the toolbox folder:
-.git/*
+.*
 slprj/*
-toolbox_package/*
+toolbox_package
+docs
+interface
+examples
+
 %
 % All files of a certain name in all subfolders of the toolbox folder:
 % **/.svn
@@ -56,6 +60,9 @@ toolbox_package/*
     <param.getting.started.guide />
     <param.matlabpath.excludes>
       <item>/utilities</item>
+      <item>/</item>
+      <item>/examples</item>
+      <item>/examples/STG</item>
     </param.matlabpath.excludes>
     <param.javaclasspath.excludes />
     <param.exported.on.package>false</param.exported.on.package>
@@ -123,7 +130,7 @@ toolbox_package/*
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}" name="Neuromorphic Toolbox for Control.mltbx" optional="false">C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package\Neuromorphic Toolbox for Control.mltbx</file>
+      <file location="${PROJECT_ROOT}" name="NeuroCont.mltbx" optional="false">C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\toolbox_package\NeuroCont.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>

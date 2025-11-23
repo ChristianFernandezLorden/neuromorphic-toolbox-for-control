@@ -113,7 +113,7 @@ Now that the model is built, we probably want to analyze it further. To do this,
 
     .. card:: Add Signal Logging
 
-        .. image:: images/STG_step5_adjust.png
+        .. image:: images/STG_log.png
             :width: 100%
 
 .. only:: latex
@@ -121,7 +121,7 @@ Now that the model is built, we probably want to analyze it further. To do this,
     +-------------------------------------------------+
     | Add Signal Logging                              |
     +=================================================+
-    | .. image:: images/STG_step5_adjust.png          | 
+    | .. image:: images/STG_log.png                   | 
     |     :width: 50%                                 | 
     +-------------------------------------------------+
 

@@ -2,7 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 
 github_link = "https://github.com/ChristianFernandezLorden/neuromorphic-toolbox-for-control"
-mathworks_link = "https://nl.mathworks.com/matlabcentral/fileexchange/180432-neuromorphic-toolbox-for-control"
+mathworks_link = "https://nl.mathworks.com/matlabcentral/fileexchange/180432-neurocont"
 lab_link = "https://www.neuroengineering.uliege.be/cms/c_11384013/en/neuroengineering-laboratory"
 if 'READTHEDOCS' in os.environ:
     doc_link = os.environ['READTHEDOCS_CANONICAL_URL']

@@ -4,8 +4,8 @@
     <param.authnamewatermark>Christian Fernandez Lorden</param.authnamewatermark>
     <param.email>Christian.FernandezLorden@uliege.be</param.email>
     <param.company>Université de Liège</param.company>
-    <param.summary>A Simulink toolbox aimed at providing blocks and analysis tools to construct neuromorphic control loops.</param.summary>
-    <param.description />
+    <param.summary>A MATLAB® and Simulink® Toolbox designed to build and analyse control system built using neuromorphic components and principles.</param.summary>
+    <param.description>Provides a library of Simulink® blocks implementing neuromorphic components as well as functions to analyse signals and apply device mismatch to Simulink® models.</param.description>
     <param.screenshot>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\icons\toolbox_icon.png</param.screenshot>
     <param.version>0.2.6</param.version>
     <param.output>${PROJECT_ROOT}\NeuroCont.mltbx</param.output>
@@ -25,7 +25,7 @@ test_mismatch.slx
 .git
 slprj
 toolbox_package
-resources
+resources/inprogress
 
 %
 % A single file in a subfolder of the toolbox folder:
@@ -36,7 +36,7 @@ resources
 slprj/*
 toolbox_package
 docs
-interface
+interface/resources/json
 examples
 
 %
@@ -58,12 +58,7 @@ examples
     <param.registered.apps />
     <param.docs />
     <param.getting.started.guide />
-    <param.matlabpath.excludes>
-      <item>/utilities</item>
-      <item>/</item>
-      <item>/examples</item>
-      <item>/examples/STG</item>
-    </param.matlabpath.excludes>
+    <param.matlabpath.excludes />
     <param.javaclasspath.excludes />
     <param.exported.on.package>false</param.exported.on.package>
     <param.required.addons />
@@ -86,7 +81,6 @@ examples
       <param.authnamewatermark />
       <param.email />
       <param.company />
-      <param.description />
       <param.output />
       <param.products.name />
       <param.products.id />
@@ -99,6 +93,7 @@ examples
       <param.registered.apps />
       <param.docs />
       <param.getting.started.guide />
+      <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
       <param.exported.on.package />
       <param.required.addons />
@@ -125,6 +120,7 @@ examples
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\icons</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\LICENSE</file>
       <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\README.md</file>
+      <file>C:\Users\chris\Documents\Unif (gits)\neuromorphic-toolbox-for-control\resources</file>
     </fileset.rootfiles>
     <fileset.depfun.included />
     <fileset.depfun.excluded />

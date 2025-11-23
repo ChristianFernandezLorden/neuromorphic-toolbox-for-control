@@ -3,32 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-================================================================
-NeuroCont : a |matlab_simulink| Neuromorphic Toolbox for Control
-================================================================
+Neuromorphic Toolbox for Control
+================================
 
-A |matlab_simulink| Toolbox designed to build and analyse control system built using neuromorphic components and principles.
+A Matlab/Simulink Toolbox designed to build and analyse control system built using neuromorphic components and principles.
 
-It provides a library of |simulink| blocks implementing neuromorphic components as well as functions to analyse signals and apply device mismatch to |simulink| models.
+Add your content using ``reStructuredText`` syntax. See the
+`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
+documentation for details.
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   contents/index
+
+
 
 
 .. toctree::
    :maxdepth: 1
-   :caption: Get Started:
-   
-   get_started/installation/main
-   get_started/usage/main
+   :caption: Examples:
 
-..
-   .. toctree::
-      :maxdepth: 1
-      :caption: Examples:
-
-      examples/main
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Package Reference
-
-   reference/blocks/main
-   reference/functions/main
+   examples/index

@@ -1,8 +1,0 @@
-sphinx
-sphinx-togglebutton
-sphinx-design
-sphinxcontrib-bibtex
-sphinx-book-theme
-sphinxcontrib-matlabdomain
-sphinx-autodoc-typehints
-sphinx-copybutton

@@ -3,8 +3,8 @@
   "entries": [
     {
       "type": "Tab",
-      "id": "Neuromorphic Control Toolbox Tab",
-      "title": "NEUROTOOL",
+      "id": "NeuroCont Toolbox Tab",
+      "title": "NEUROCONT",
       "children": [
          {
             "type": "Section",

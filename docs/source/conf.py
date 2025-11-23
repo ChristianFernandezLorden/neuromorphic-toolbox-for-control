@@ -24,7 +24,7 @@ author = 'Christian Fernandez Lorden'
 if 'READTHEDOCS' in os.environ:
     version = os.environ['READTHEDOCS_VERSION_NAME']
 else:
-    version = (ET.parse("../../toolbox_package/neuromorphic-toolbox-for-control.prj").getroot().findall('./configuration/param.version')[0].text)
+    version = (ET.parse("../../toolbox_package/NeuroCont.prj").getroot().findall('./configuration/param.version')[0].text)
 release = version
 
 # -- General configuration ---------------------------------------------------
@@ -60,8 +60,8 @@ exclude_patterns = []
 bibtex_bibfiles = ['refs.bib']
 
 
-html_title = "Neuromorphic Toolbox for Control"
-html_short_title = "NTC"
+html_title = "NeuroCont"
+html_short_title = "NC"
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -184,6 +184,9 @@ rst_prolog = """
     \\href{"""+mathworks_link+"""}{\\faMathWorks MathWorks® File Exchange} 
     
 .. |mathworks-file-exchange-link| replace:: |mathworks-file-exchange-link-html|\\ |mathworks-file-exchange-link-latex|
+
+.. role:: matlab(code)
+    :language: matlab
 """
 
 matlab_short_links = False

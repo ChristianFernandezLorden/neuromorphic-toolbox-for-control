@@ -1,7 +1,6 @@
-``Quick Insert``
-================
-
-These sections list the differents blocks grouped by sublibraries.
+===================
+:mod:`Quick Insert`
+===================
 
 .. toctree::
     :maxdepth: 6

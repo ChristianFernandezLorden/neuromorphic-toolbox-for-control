@@ -1,5 +1,34 @@
-function [max_idx, bursts] = find_bursts(spikes, burst_length_factor)
-    import NeuromorphicControlToolbox.signalAnalysis.*
+function bursts = find_bursts(spikes, burst_length_factor)
+    % Compute from the spiking times if the trace contains burst and to
+    % which burst each spike belongs based on the interspike times.
+    %
+    % Description
+    % -----------
+    %   bursts = find_bursts(spikes)
+    %       Computes the bursts with a default grouping factor
+    %       of 4 between the lower and higher group interspike times.
+    %
+    %   bursts = find_bursts(spikes, burst_length_factor)
+    %       Computes the bursts with a default a custom grouping factor between the lower and higher group interspike times.
+    % Inputs
+    % ------
+    %   spikes: matrix
+    %       Matrix Nx3 as returned from :func:`find_spikes` containing the
+    %       spikes.
+    %
+    % Optional Input
+    % --------------
+    %   burst_length_factor: numeric
+    %       Value of the grouping factor.
+    %
+    % Output
+    % ------
+    %   bursts: cell array
+    %       Cell array containing matrix Nx3 as returned from
+    %       :func:`find_spikes`. Each cell represent the bursts and the
+    %       matrix represents each spikes in the burst.
+    %       An empty cell array is returned if the signal is not deemed
+    %       bursting according to the grouping factor.
 
     if nargin == 1
         burst_length_factor = 4;

@@ -3,7 +3,7 @@ function mismatchOption = set_options(varargin)
     % Name-Value pairs.
     % 
     % Note: Exclusion (of blocks, mismatch or type) always take precedence over inclusion. 
-    % Thus using *'all'* key result in all types/mismatch to be eliminated.
+    % Thus using an *'all'* key in an exclusion option result in all types/mismatch to be eliminated.
     %
     % Description
     % -----------
@@ -48,7 +48,7 @@ function mismatchOption = set_options(varargin)
     %   
     %   ``'mismatchFunctions'``: (containers.Map(char,containers.Map(char,function_handle))) -- function(s) that apply mismatch to a specific block type.
 
-    import NeuromorphicControlToolbox.mismatch.*
+    import NeuroCont.mismatch.*
 
     varg = varargin;
     if mod(length(varargin),2) ~= 0

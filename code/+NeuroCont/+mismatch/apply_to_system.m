@@ -128,7 +128,7 @@ end
 
 
 function [simins, options] = parse_input(model, varg)
-    import NeuromorphicControlToolbox.mismatch.*
+    import NeuroCont.mismatch.*
     
     sims_or_nb_sims = [];
     if ismember(class(varg{1}), {'Simulink.SimulationInput'}) || (isnumeric(varg{1}) && length(varg{1}) == 1 && varg{1} >= 1 && rem(varg{1},1) == 0)

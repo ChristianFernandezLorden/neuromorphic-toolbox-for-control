@@ -1,4 +1,35 @@
 function spikes = find_spikes(V, T, threshold)
+    % Compute the spike times of a voltage trace or logical trace. 
+    %
+    % Description
+    % -----------
+    %   spikes = find_spikes(V, T)
+    %       * If V is numeric, then compute the spiking times with the base threshold of 0.
+    %       * If V is logical, then compute the spiking times based on the rising and falling edges.
+    %
+    %   spikes = find_spikes(V, T, threshold)
+    %       * If V is numeric, then compute the spiking times with the given threshold.
+    %       * If V is logical, then ignore given treshold and compute the spiking times based on the rising and falling edges.
+    % Inputs
+    % ------
+    %   V: vector
+    %       Value of the voltage.
+    %   T: vector
+    %       Sampling times of the voltage.
+    %
+    % Optional Input
+    % --------------
+    %   threshold: numeric
+    %       Value of the treshold.
+    %
+    % Output
+    % ------
+    %   spikes: matrix
+    %       Returns a Nx3 matrix where N is the number of spikes and, for each row, the
+    %       the first value is the start of the spike, the
+    %       second the spike of the  and the last the time of the peak. If the peak is not
+    %       computable the last value is NaN.
+
     if nargin == 2
         threshold = 0;
     end
